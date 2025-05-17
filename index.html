@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellivy</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./image-removebg-preview (3).png" type="image/png">
+    
+</head>
+<body>
+    <div id="welcome-popup" style="display: none;">
+        <div class="popup-content">
+          <h2>Welcome to Wellivy 💚</h2>
+          <p id="welcome-message">Loading...</p>
+          <button onclick="closePopup()">Start Now</button>
+        </div>
+    </div>
+    <header class="site-header">
+      <div class="header-content">
+        <div class="logo">
+          🌿
+        </div>
+        <div>
+          <h1 class="site-title">Wellivy</h1>
+          <p class="tagline">Your Daily Dose of Wellness</p>
+        </div>
+      </div>
+    </header>
+<br>
+<br>
+<br>
+
+
+<main class="container">
+     
+    <section class="card" id="mood-tracker">
+      
+      <h2>Mood Tracker</h2>
+      <div class="button-row">
+        <button>😊</button>
+        <button>😐</button>
+        <button>😞</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Water Intake</h2>
+      <div class="button-row">
+        <button>💧</button>
+        <button>💧</button>
+        <button>+</button>
+      </div>
+    </section>
+      <section class="card text-center">
+    <h2>Breathing Exercise</h2>
+    <div id="breath-circle" class="breath-circle"></div>
+    <p>Inhale... Exhale...</p>
+    <br>
+    <p><strong> Start breathing excercise</strong></p>
+    <a href="./trial.html"><button class="btn">Start</button></a>
+  </section>
+  
+  
+    
+
+  <section class="card">
+    <h2>Meal Log</h2>
+    <input type="text" id="mealInput" placeholder="Add meal + calories">
+    <button class="btn">Log</button>
+    <ul id="mealList"></ul>
+
+  
+    <br><br>
+    <p><strong>To get more details click here</strong></p>
+    <a target="_blank" href="./food.html"><button class="btn">View details</button></a>
+  </section>
+
+    <section class="card">
+      <h2>Sleep Tracker</h2>
+      <input type="number" id="sleepInput" placeholder="Hours slept" />
+      <button id="sleepBtn" class="btn">Submit</button>
+      <p id="sleepMessage" class="sleep-message"></p>
+
+      <br>
+      <br>
+      <p><strong>wanna know about your sleep? cick here</strong></p>
+      <button class="btn" onclick="nextPage('sleepModal')">View Details</button>
+    </section>
+
+    <div id="sleepModal" class="full-page-modal page">
+        <div class="modal-header">
+          <span id="closeModal" class="close-btn">&larr; Back</span>
+          <h2>Sleep Tracker Details</h2>
+        </div>
+        <div class="modal-body">
+          <canvas id="sleepChart" width="300" height="100"></canvas>
+          <br>
+          <br>
+          <h2>Why good sleep is important and are you sleeping good?</h2>
+          <br>
+          <br>
+          <p>Good sleep is crucial for both physical and mental well-being. It enhances <strong>cognitive functions</strong> like memory, focus, and decision-making while helping to regulate mood and reduce stress and anxiety. Physically, sleep supports <strong>immune function</strong>, promotes <strong>muscle repair and growth</strong>, and helps maintain a healthy balance of hormones that regulate hunger and metabolism. Lack of sleep, on the other hand, increases the risk of serious health issues such as <strong>heart disease, diabetes, and high blood pressure</strong>.
+
+            In daily life, getting enough rest boosts <strong>energy levels, productivity</strong>, and <strong> times</strong>, making it easier to stay active and motivated. Prioritizing <strong>7 to 9 hours of quality sleep</strong> each night is one of the simplest and most effective ways to improve your overall health and maintain a balanced, healthy lifestyle.
+            </p>
+            <br>
+            <br>
+            <br>
+            <h1>Your sleep details</h1>
+            <p> Check the your sleep data record given above and match with these ranges</p>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                  <th>Sleep hour range</th>
+                  <th>Ratings</th>
+                </tr>
+                <tr>
+                  <td>7-8</td>
+                  <td>good 😁</td>
+                </tr>
+                <tr>
+                    <td>5-7</td>
+                    <td>Moderate 😐</td>
+                  </tr>
+                  <tr>
+                    <td>4-5</td>
+                    <td>poor 😬</td>
+                  </tr>
+                  <tr>
+                    <td>>4</td>
+                    <td>Risky 😵</td>
+                  </tr>
+              </table>
+              
+        </div>
+      </div>
+
+    <section class="card" class="fitness-routine">
+        <h2>Fitness Routine</h2>
+        <p><strong>Fitness is very important for healthy body and mind click to check your todays task</strong></p>
+        <a href="./fitness.html" class="fitness"><button class="btn">Start</button></a>
+      </section>
+      
+
+    <section class="card">
+      <h2>Mental Health Journal</h2>
+      <textarea rows="3" placeholder="Write here..."></textarea>
+      <button class="btn">Save</button>
+
+    </section>
+
+    <section class="card">
+      <h2>Weight Tracker</h2>
+      <input type="number" placeholder="Enter weight (kg)" />
+      <button class="btn">Track</button>
+    </section>
+
+    <section class="card full-width">
+      <h2>Summary</h2>
+      <p>Graphs & stats coming soon...</p>
+    </section>
+</main>
+
+<script src="./script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</body>
+</html>

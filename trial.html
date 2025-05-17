@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breathing Exercise</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 50px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #exercise-page {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .time-options {
+      margin: 20px 0;
+    }
+
+    .time-options button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #circle-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 30px auto;
+    }
+
+    .circle {
+      width: 100%;
+      height: 100%;
+      border: 5px solid #00aaff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    #rotating-line {
+      position: absolute;
+      top: 5px;
+      left: 119px;
+      width: 2px;
+      height: 120px;
+      background-color: red;
+      transform-origin: bottom center;
+      transform: rotate(0deg);
+    }
+
+    #timer-display {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .custom-popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: popupFade 0.4s ease;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-content span {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.popup-content button {
+  padding: 8px 16px;
+  background: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background: #008ecc;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -30%);
+  }
+}
+.ctrl {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#ctrl:hover {
+  background: #008ecc;
+}
+
+
+
+  </style>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Card with Start Button -->
+  <div class="card">
+    <h2>Breathing Exercise</h2>
+    <button onclick="showExercisePage()" class="btn">Start</button>
+  </div>
+
+  <!-- Exercise Page -->
+  <div id="exercise-page">
+
+    <header class="ctrl">
+      <div class="controls" id="ctrl">
+        <button onclick="goBack()" class="btn">Back</button>
+      </div>
+    </header>
+    
+
+    <h3>Select Duration</h3>
+    <div class="time-options">
+      <button onclick="selectDuration(10)" class="btn">10s</button>
+      <button onclick="selectDuration(30)" class="btn">30s</button>
+      <button onclick="selectDuration(60)"class="btn">1 min</button>
+      <button onclick="selectDuration(90)"class="btn">1.5 min</button>
+      <button onclick="selectDuration(120)"class="btn">2 min</button>
+    </div>
+    <div>
+      <h2>Wanna test your lungs??</h2>
+      <br>
+      <br>
+      <br>
+      <p><strong>select the duaration from options and press start button and you have to hold your breath according to the duration you have selected</strong></p>
+      <h3>Task</h3>
+    </div>
+    <div id="circle-container">
+      <div class="circle">
+        <div id="rotating-line"></div>
+        <div id="timer-display">00:00</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="startTimer()"class="btn">Start</button>
+      <button onclick="stopTimer()"class="btn">Stop</button>
+    </div>
+  </div>
+
+  <audio id="beep-sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+
+  <script>
+
+function goBack() {
+  document.getElementById('exercise-page').style.display = 'none';
+  document.querySelector('.card').style.display = 'block';
+  stopTimer(); // stop if running
+}
+
+
+    let duration = 0;
+    let timeLeft = 0;
+    let timerInterval = null;
+    let rotationInterval = null;
+    let angle = 0;
+  
+    function showExercisePage() {
+      document.querySelector('.card').style.display = 'none';
+      document.getElementById('exercise-page').style.display = 'block';
+    }
+  
+    function selectDuration(seconds) {
+      duration = seconds;
+      timeLeft = seconds;
+      updateDisplay();
+      stopTimer();
+    }
+  
+    function showCustomPopup(message) {
+      const popup = document.createElement('div');
+      popup.classList.add('custom-popup');
+      popup.innerHTML = `
+        <div class="popup-content">
+          <span>😁 ${message}</span>
+          <button onclick="this.parentElement.parentElement.remove()">OK</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+  
+      setTimeout(() => {
+        if (document.body.contains(popup)) {
+          popup.remove();
+        }
+      }, 5000); // auto-remove after 5s
+    }
+  
+    function startTimer() {
+      if (duration === 0) {
+        showCustomPopup("Please select a duration first!");
+        return;
+      }
+  
+      stopTimer(); // Reset if running
+  
+      timeLeft = duration;
+      angle = 0;
+      updateDisplay();
+  
+      const rotationSpeed = 360 / duration;
+  
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft < 0) {
+          stopTimer();
+          return;
+        }
+        updateDisplay();
+      }, 1000);
+  
+      rotationInterval = setInterval(() => {
+        angle += rotationSpeed;
+        document.getElementById('rotating-line').style.transform = `rotate(${angle}deg)`;
+      }, 1000);
+    }
+  
+    function stopTimer() {
+      clearInterval(timerInterval);
+      clearInterval(rotationInterval);
+    }
+  
+    function updateDisplay() {
+      const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+      const secs = (timeLeft % 60).toString().padStart(2, '0');
+      document.getElementById('timer-display').textContent = `${mins}:${secs}`;
+    }
+    function startTimer() {
+  if (duration === 0) {
+    showCustomPopup("Please select a duration first!");
+    return;
+  }
+
+  stopTimer(); // Reset if running
+
+  timeLeft = duration;
+  angle = 0;
+  updateDisplay();
+
+  const rotationSpeed = 360 / duration;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft < 0) {
+      stopTimer();
+
+      // Play beep sound
+      const beep = document.getElementById('beep-sound');
+      beep.play();
+
+      showCustomPopup("Exercise complete!");
+      return;
+    }
+    updateDisplay();
+  }, 1000);
+
+  rotationInterval = setInterval(() => {
+    angle += rotationSpeed;
+    document.getElementById('rotating-line').style.transform = `rotate(${angle}deg)`;
+  }, 1000);
+}
+
+  </script>
+  
+
+</body>
+</html>

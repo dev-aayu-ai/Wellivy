@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .food-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+}
+
+.food-table th,
+.food-table td {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.food-table tr.healthy {
+  background-color: #d4edda;
+  color: #155724;
+  cursor: help;
+}
+
+.food-table tr.unhealthy {
+  background-color: #f8d7da;
+  color: #721c24;
+  cursor: help;
+}
+
+.food-table tr:hover {
+  filter: brightness(1.05);
+  transition: 0.3s ease;
+}
+.category-heading {
+  font-size: 1.3rem;
+  margin: 30px 0 10px;
+  font-weight: 600;
+  color: #333;
+  border-left: 5px solid #4CAF50;
+  padding-left: 10px;
+}
+
+.btn{
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+    </style>
+</head>
+<body>
+    <section class="card">
+        <h2>Food & Calorie Chart</h2>
+      
+        <!-- Breakfast Section -->
+        <h3 class="category-heading">🍳 Breakfast</h3>
+        <table class="food-table">
+          <thead>
+            <tr>
+              <th>Food Item</th>
+              <th>Calories (per serving)</th>
+              <th>Health Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="healthy" title="Rich in fiber, keeps you full, and stabilizes blood sugar.">
+              <td>Oats with Milk</td>
+              <td>150</td>
+              <td>✅ Healthy</td>
+            </tr>
+            <tr class="healthy" title="High in protein and essential amino acids.">
+              <td>Boiled Eggs</td>
+              <td>78</td>
+              <td>✅ Healthy</td>
+            </tr>
+            <tr class="healthy"title="Moderate in nutrients depend upon type.">
+              <td>Chapati</td>
+              <td>120</td>
+              <td>✅ Healthy</td>
+            </tr>
+            <tr class="healthy" title="Vitamins + protein.">
+              <td>Fruit Salad + Cottage Cheese</td>
+              <td>250 </td>
+              <td>✅ Healthy</td>
+            </tr>
+            <tr class="healthy" title="Balanced energy release.">
+              <td>Oats + Banana + Nuts + Honey</td>
+              <td>300-350</td>
+              <td>✅ Healthy</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <h3 class="category-heading">🥗 Lunch</h3>
+<table class="food-table">
+    <table class="food-table">
+        <thead>
+          <tr>
+            <th>Food Item</th>
+            <th>Calories (per serving)</th>
+            <th>Health Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="healthy" title="High-protein lentils with complex carbs.">
+            <td>Dal + Brown Rice</td>
+            <td>150</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="Cooked with mixed veggies and minimal oil.">
+            <td>Vegetable Pulao</td>
+            <td>78</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy"title="Whole wheat wrap with grilled paneer and veggies.">
+            <td>Grilled Paneer Wrap</td>
+            <td>120</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="Fiber-rich broken wheat with veggies.">
+            <td>Vegetable Dalia</td>
+            <td>250 </td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="High-protein, iron-rich.">
+            <td>Boiled Chickpea Salad (Chana Chaat)</td>
+            <td>300-350</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="With curd, cooked with minimal oil.">
+            <td>Stuffed Paratha (Paneer/Spinach)</td>
+            <td>300-350</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="Vegan protein, vitamins, low saturated fat.">
+            <td>Tofu Stir-Fry with Brown Rice</td>
+            <td>300-350</td>
+            <td>✅ Healthy</td>
+          </tr>
+        </tbody>
+</table>
+
+<h3 class="category-heading">🍽 Dinner</h3>
+<table class="food-table">
+    <table class="food-table">
+        <thead>
+          <tr>
+            <th>Food Item</th>
+            <th>Calories (per serving)</th>
+            <th>Health Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="healthy" title="	Easy to digest, high protein and fiber.">
+            <td>Moong Dal Khichdi (with veggies)</td>
+            <td>250–350	</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="	Complex carbs + fiber-rich veggies.">
+            <td>Multigrain Roti + Mixed Veggies</td>
+            <td>300–400</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr classs="healthy" title="High protein, light and nutritious.">
+            <td>Paneer Bhurji + Salad</td>
+            <td>300–350</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="	Complex carbs + antioxidants.">
+            <td>Grilled Veggies + Brown Rice</td>
+            <td>300–400</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="Balanced fiber and vitamins.">
+            <td>Stuffed Vegetable Roti (no oil)</td>
+            <td>250–300</td>
+            <td>✅ Healthy</td>
+          </tr>
+          <tr class="healthy" title="Protein-rich and helps digestion.">
+            <td>Sprouted Moong Salad + Buttermilk</td>
+            <td>200–250</td>
+            <td>✅ Healthy</td>
+          </tr>
+        </tbody>
+</table>
+<br>
+<h3>To view get more aware about your food click here and search your food here</h3>
+<br>
+<a href="https://www.nutritionix.com/"><button class="btn">View Details</button></a>
+      </section>
+      
+      
+</body>
+</html>
